@@ -5,6 +5,20 @@ class Solution(val number:Int) {
     private var binary: List<Byte> = emptyList()
 
     fun solution(): Int {
+        var start:Int = 0
+        var end:Int = 0
+        var maxStart:Int = 0
+        var maxEnd:Int = 0
+        binary.forEachIndexed {
+            index, element -> // TODO
+            end = index
+            if(element.toInt() == 1 && maxEnd - maxStart < end - start) {
+                maxEnd = end
+                maxStart = start
+            }
+
+        }
+
         return 0
     }
 
@@ -32,8 +46,6 @@ class Solution(val number:Int) {
         return binary
     }
 
-// 5 101
-
     fun binaryToIntValue(): Int {
         var sum = 0
         binary.asReversed().forEachIndexed() {
@@ -42,8 +54,3 @@ class Solution(val number:Int) {
         return sum
     }
 }
-
-// 2^(n-1)
-//4 10
-//5 101
-//7 111
