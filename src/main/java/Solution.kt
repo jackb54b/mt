@@ -2,27 +2,33 @@ import kotlin.math.pow
 
 class Solution(val number:Int) {
 
-    private var binary: List<Byte> = emptyList()
+    private var binary: List<Byte> = convert()
 
-    fun solution(): Int {
-        var start:Int = 0
-        var end:Int = 0
-        var maxStart:Int = 0
-        var maxEnd:Int = 0
+    fun solution(): Pair<Int, Int> {
+        var start = -1
+        var maxStart = 0
+        var maxEnd = 0
         binary.forEachIndexed {
-            index, element -> // TODO
-            end = index
-            if(element.toInt() == 1 && maxEnd - maxStart < end - start) {
-                maxEnd = end
-                maxStart = start
+            index, element ->
+            var prevIndex = index - 1
+            if(element.toInt() == 1 && start == -1 ) {
+                start = index
             }
-
+            if(prevIndex>=0 && binary[prevIndex].toInt() == 1 && element.toInt() == 1) {
+                start = index
+            }
+            if(prevIndex>=0 && binary[prevIndex].toInt() == 0 && element.toInt() == 1 && maxEnd - maxStart <= index - start) {
+                maxStart = start
+                maxEnd = index
+                start = -1
+            }
         }
-
-        return 0
+        return Pair(maxStart, maxEnd)
     }
 
+    //  [1, 1, 0, 0, 1, 0, 0] | 100
     fun convert(): List<Byte> {
+        binary = emptyList()
         if(number == 0) {
             binary += 0
             return binary

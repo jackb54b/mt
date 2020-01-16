@@ -20,7 +20,7 @@ fun Person.add(block: Address.() -> Unit ): Address {
 }
 
 
-infix fun Int.PRINT(str: String): Unit {
+infix fun Int.PRINT(str: String) {
     repeat(this) {
         print(str + " ")
     }

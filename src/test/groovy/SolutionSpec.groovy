@@ -1,3 +1,4 @@
+import kotlin.Pair
 import org.junit.Ignore
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -32,10 +33,35 @@ class SolutionSpec extends Specification {
         result == binary
         where:
         binary  | number
+        [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0] | 1041
+        [1, 1, 0, 0, 1, 0, 0] | 100
+        [1,1,0,0,1] | 25
         [1,1,1] | 7
         [1,0,1] | 5
         [1,0]   | 2
         [1]     | 1
         [0]     | 0
+    }
+
+    @Unroll
+    def "solution #number"(Pair expected, int number) {
+        given:
+        def solution = new Solution(number)
+        when:
+        def result = solution.solution()
+        then:
+        result == expected
+        where:
+        expected      | number
+        new Pair(0,6) | 1041
+        [1,4]         | 100
+        [1,4]         | 25
+        [0,3]         | 9
+        [0,0]         | 7
+        [0,2]         | 5
+        [0,0]         | 3
+        [0,0]         | 2
+        [0,0]         | 1
+        [0,0]         | 0
     }
 }
