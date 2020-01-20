@@ -6,7 +6,7 @@ import spock.lang.Unroll
 
 class SolutionSpec extends Specification {
 
-    @Ignore
+    // @Ignore
     @Unroll
     def " #binary is #expectedResult"(List<Byte> binary, int expectedResult) {
         given:
@@ -53,6 +53,7 @@ class SolutionSpec extends Specification {
         result == expected
         where:
         expected      | number
+        [1,4]         | 214783644
         new Pair(0,6) | 1041
         [1,4]         | 100
         [1,4]         | 25
